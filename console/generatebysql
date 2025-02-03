@@ -1,0 +1,165 @@
+<?php
+
+// Function to extract tables form SQL
+function extractTables($sql) {
+    $tables = [];
+    preg_match_all('/CREATE TABLE `(\w+)` \((.*?)\) ENGINE=InnoDB;/s', $sql, $matches, PREG_SET_ORDER);
+
+    foreach ($matches as $match) {
+        $tableName = $match[1];
+        $columnsDefinition = $match[2];
+        // Extracting column names
+        preg_match_all('/\b(\w+)\s+/', $columnsDefinition, $columnMatches);
+        $columns = array_filter($columnMatches[1], function($col) {
+            // Filter out keywords that are not column names
+            $keywords = ['PRIMARY', 'KEY', 'AUTO_INCREMENT', 'UNIQUE', 'NOT', 'NULL', 'DEFAULT', 'FOREIGN', 'REFERENCES', 'ENGINE', 'INT', 'TEXT', 0];
+            return !in_array(strtoupper($col), $keywords);
+        });
+        $tables[$tableName] = $columns;
+    }
+    return $tables;
+}
+
+// Function to generate entity class content
+function generateEntityContent($tableName, $columns) {
+    $properties = [];
+    $params = [];
+    $init = [];
+    $getters = [];
+    $setters = [];
+
+    foreach ($columns as $columnName) {
+        $ucfirstColumnName = ucfirst($columnName);
+        $properties[] = "private \$$columnName;";
+        $params[] = "\$$columnName";
+        $init[] = "\$this->set$ucfirstColumnName(\$$columnName);";
+        $getters[] = <<<PHP
+    public function get$ucfirstColumnName() {return \$this->$columnName;}
+PHP;
+        $setters[] = <<<PHP
+    public function set$ucfirstColumnName(\$value) {\$this->$columnName = \$value;}
+PHP;
+    }
+
+    $propertiesStr = implode("\n    ", $properties);
+    $paramsStr = implode(", ", $params);
+    $initStr = implode("\n        ", $init);
+    $gettersStr = implode("\n", $getters);
+    $settersStr = implode("\n", $setters);
+
+    return <<<PHP
+<?php
+
+class $tableName {
+    $propertiesStr
+
+    public function __construct($paramsStr) {
+        $initStr
+    }
+
+$gettersStr
+$settersStr
+}
+
+PHP;
+}
+
+// Function to generate repository content
+function generateRepositoryContent($tableName, $columns) {
+    $repositoryClassName = $tableName . 'Repository';
+    $params = [];
+    $binds = [];
+    $bindValues = [];
+    $setUpdates = [];
+
+    foreach ($columns as $columnName) {
+        $ucfirstColumnName = ucfirst($columnName);
+        $params[] = "\$entity['$columnName'], ";
+        $binds[] = ":$columnName";
+        $bindValues[] = "\$stmt->bindValue(':$columnName', \$entity->get$ucfirstColumnName());";
+        if ($columnName != 'id') {$setUpdates[] = "$columnName = :$columnName";}
+    }
+
+    $paramsStr = substr(implode($params), 0, strlen(implode($params))-2);
+    $columnsStr = implode(", ", $columns);
+    $bindsStr = implode(", ", $binds);
+    $bindValuesStr = implode("\n        ", $bindValues);
+    $setUpdatesStr = implode(", ", $setUpdates);
+    return <<<PHP
+<?php
+
+class $repositoryClassName {
+    private \$conn;
+
+    public function __construct() {
+        \$this->conn = Bdd::getBdd();
+    }
+
+    public function getAll() {
+        \$query = 'SELECT * FROM $tableName';
+        \$stmt = \$this->conn->prepare(\$query);
+        \$stmt->execute();
+        \$result = \$stmt->fetchAll(PDO::FETCH_ASSOC);
+        \$return = [];
+        if (isset(\$result) && !empty(\$result)) {
+            foreach (\$result as \$entity) {
+                \$return[] = new $tableName($paramsStr);
+            }
+        }
+        return \$return;
+    }
+
+    public function getById(\$id) {
+        \$query = 'SELECT * FROM $tableName WHERE id = :id';
+        \$stmt = \$this->conn->prepare(\$query);
+        \$stmt->bindParam(':id', \$id);
+        \$stmt->execute();
+        \$entity = \$stmt->fetchAll(PDO::FETCH_ASSOC);
+        if (isset(\$result) && !empty(\$result)) {
+            \$return = new $tableName($paramsStr);
+        }
+        return \$return;
+    }
+
+    public function create(\$entity) {
+        \$query = 'INSERT INTO $tableName ( $columnsStr ) VALUES ( $bindsStr )';
+        \$stmt = \$this->conn->prepare(\$query);
+        $bindValuesStr
+        return \$stmt->execute();
+    }
+
+    public function update(\$entity) {
+        \$query = 'UPDATE $tableName SET $setUpdatesStr WHERE id = :id';
+        \$stmt = \$this->conn->prepare(\$query);
+        $bindValuesStr
+        return \$stmt->execute();
+    }
+
+    public function delete(\$entity) {
+        \$query = 'DELETE FROM $tableName WHERE id = :id';
+        \$stmt = \$this->conn->prepare(\$query);
+        \$stmt->bindValue(':id', \$entity->getId());
+        return \$stmt->execute();
+    }
+}
+
+PHP;
+}
+
+
+// Get SQL file content
+$sql = file_get_contents('data/bdd.sql');
+if ($sql === false) {die("Erreur lors de la lecture du fichier SQL.");}
+
+// Extract tables from SQL
+$tables = extractTables($sql);
+
+// Generate all files (repos & entities)
+foreach ($tables as $table => $collumns) {
+    file_put_contents('src/entity/'.$table.'.php', generateEntityContent($table, $collumns));
+    echo "Created repository file: src/entity/$table".".php\n";
+    file_put_contents('src/repo/'.$table.'Repository.php', generateRepositoryContent($table, $collumns));
+    echo "Created repository file: src/repo/$table"."Repository.php\n";
+
+}
+

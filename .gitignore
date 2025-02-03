@@ -1,0 +1,5 @@
+# Ignorer le dossier vendor contenant les dépendances
+/vendor/
+
+# Ignorer le fichier .env contenant les variables sensibles
+.env

@@ -1,0 +1,8 @@
+# Start MariaDB in a new minimized window
+#./console/mariadbsh/bin/mariadbd
+
+# Wait a few seconds to ensure MariaDB has started
+#sleep 1
+
+# Start PHP built-in server
+php -S localhost:8000 -t public

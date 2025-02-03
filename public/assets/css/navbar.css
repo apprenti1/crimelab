@@ -1,0 +1,27 @@
+.navbar {
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    background-color: #000;
+}
+.content div{
+    height: 90px !important;
+}
+
+.container {
+    padding-top: 116px;
+}
+
+
+@media (max-width: 640px) {
+    .navbar {
+        position: relative;
+        width: 100%;
+        z-index: 1000;
+        top: 0;
+        left: 0;
+        background-color: #000;
+    }
+}

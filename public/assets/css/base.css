@@ -1,0 +1,132 @@
+:root {
+  --primary: #ff0808;
+}
+* {
+  outline: none;
+  color: #fff;
+}
+div{
+  z-index: 2;
+  color: #fff;
+}
+.branding-container {
+  position: relative;
+  display: inline-block !important;
+}
+.branding, .branding-right, .branding-top, .branding-left {
+  height: 40px;
+  display: block;
+  position: absolute;
+} 
+.branding {
+  bottom: 10px;
+  right: 10px;
+}
+.branding-right {
+  top: 10px;
+  right: 10px;
+}
+.branding-top {
+  top: 10px;
+  left: 10px;
+}
+.branding-left {
+  bottom: 10px;
+  left: 10px;
+}
+
+
+
+.bg-primary {
+  background-color: var(--primary) !important;
+}
+.text-primary {
+  color: var(--primary) !important;
+}
+p {
+  margin: 0;
+}
+.container {
+  background-color: #0004;
+  margin: 0;
+  max-width: 100%;
+}
+
+.inverted {
+  filter: invert(1);
+}
+.rounded-50px{
+  border-radius: 50px;
+}
+  /* arrow scrollto top animation */
+  .arrow {
+    width: 1.8rem;
+    height: 1.25rem;
+    display: inline-block;
+    position: relative;
+  }
+  .arrow span {
+    top: 0.5rem;
+    position: absolute;
+    width: 1.2rem;
+    height: 0.4rem;
+    background-color: #efefef;
+    display: inline-block;
+    transition: 0.5s all 0s;
+    border-radius: 50px;
+  }
+  .arrow span:first-of-type {
+    left: 0;
+    transform: rotate(-45deg);
+  }
+  .arrow span:last-of-type {
+    right: 0;
+    transform: rotate(45deg);
+  }
+  .arrow:hover span {
+    transform: rotate(0deg);
+    width: 1rem;
+  }
+/* END arrow scrollto top animation */
+/*
+ <uniquifier>: Use a unique and descriptive class name
+ <weight>: Use a value from 400 to 900
+*/
+
+.orbitron {
+  font-family: "Orbitron", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 4rem;
+  color: var(--primary);
+  font-style: normal;
+}
+input:focus-visible {
+  border: 0 !important;
+}
+
+
+
+/* underline animation */
+.underlined {
+  position: relative;
+  color: #fff;
+  display: inline-block;
+  transition: color 0.5s ease;
+}
+.containerUnderlined:hover{text-decoration: none !important;}
+.containerUnderlined:hover .underlined, .containerUnderlined:focus .underlined, .containerUnderlined .everunderlined {color: var(--primary);}
+.containerUnderlined .everunderlined::before, .containerUnderlined:hover .underlined::before, .containerUnderlined:focus .underlined::before {transform: scaleX(1);}
+.underlined::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--primary);
+  transition: transform 0.5s ease;
+  transform: scaleX(0);
+}
+/* END underline animation */

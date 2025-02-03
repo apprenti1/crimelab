@@ -1,0 +1,159 @@
+form{
+    position: relative;
+    width:330px;
+    height: 360px;
+    border-radius: 25px;
+    background: #000000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px;
+}
+form div{
+    position:relative;
+    margin-top: 20px;
+}
+form div.pwd{
+    margin-top: 30px;
+}
+
+form div.form input {
+    position: relative;
+    width: 100%;
+    padding: 20px 10px 10px ;
+    background: #00000000;
+    color: #23242a;
+    border: none;
+    outline: none;
+    z-index: 1;
+    font-size: 1em;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 0;
+  -webkit-text-fill-color: #000000;
+  transition: background-color 5000s ease-in-out 0s;
+}
+form div label{
+position: absolute;
+left: 0;
+padding: 20px 10px 10px;
+font-size: 1.25em;
+color: #8f8f8f;
+transition: 0.5s all 0s;
+}
+form div input:valid ~ label,
+form div input:focus ~ label {
+    color: #fff;
+    transform: translateY(-30px);
+    font-size: 1em;
+}
+form div i{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    border-radius: 10px;
+    transition: 0.5s all 0s;
+    z-index: 0;
+}
+form div input:valid ~ i,
+form div input:focus ~ i {
+    height: 40px;
+}
+form div.signup{
+    display: flex;
+    justify-content: space-between;
+}
+form div.signup input[type="submit"], form div.signup a, .error a{
+    flex: 0.45;
+    margin-top: 30px;
+    border: none;
+    outline: none;
+    color: var(--primary);
+    border-radius: 10px;
+    background: #1a1a1a;
+    font-family: "Helvetica Neue",Helvetica,Arial;
+    font-size: 1.2em;
+    font-weight: bold;
+    height: 50px;
+    border: solid 3px;
+    border-color: var(--primary);
+    transition: 0.8s all 0s;
+    text-align: center;
+    text-decoration: none;
+}
+
+form div.signup a{
+    background-color: #00000000;
+    color: #aaa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-color: #fff;
+}
+form div.signup a:hover, .error a:hover{
+    background-color: #24242b;
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+form div.signup input[type="submit"]:hover{
+    transition: 0.8s all 0s;
+    background: var(--primary);
+    color: #000;
+}
+form div.signup input[type="submit"]:active, form div.signup a:active, .error a:active{
+    transition: 0.2s all 0s;
+    opacity: 0.5;
+    filter: blur(2px);
+}
+p{
+    color: #ff7a45;
+}
+.error{
+    padding: 20px;
+    border-radius: 30px;
+    background-color: #0000007b;
+    text-align: center;
+    display: flex;
+    margin: 20px;
+    margin-bottom: 0;
+}
+.error div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0px;
+}
+.error span{
+    border-radius: 70px;
+    height: 50vh;
+    width: 30vw;
+    background-size: cover;
+    background-position-x: center;
+    margin: 20px;
+}
+.error a{
+    width: 100px;
+    height: 70px;
+    margin: 0;
+}
+@media only screen and (max-width: 600px) {
+    .error span{
+        height: 40vh;
+        width: 30vh;
+    }
+}
