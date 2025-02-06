@@ -6,7 +6,7 @@
     <link href="<?= $baseurl ?>assets/libs/bootstrap/bootstrap.min.css" rel="stylesheet">
     <script defer src="<?= $baseurl ?>assets/libs/bootstrap/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="<?= $baseurl ?>assets/css/base.css">
-    <link rel="icon" href="<?= $baseurl ?>assets/img/icon.ico">
+    <link rel="icon" href="<?= $baseurl ?>assets/img/icon.svg">
     <title><?= $title ?></title>
     <style>
         body {
@@ -27,7 +27,7 @@
     <div class="d-flex flex-column justify-content-center align-items-center p-3 rounded-4" style="background-color: #000a;">
         <h2>Error: 404</h2>
         <h3>Page not found</h3>
-        <p>Oups, on dirait que cette page n'existe pas...</p>
+        <p class="mb-2">Oups, on dirait que cette page n'existe pas...</p>
         <div style="padding: 20px; width:fit-content; border-radius: 20px; background-color: #000;">
             <a href="<?= $baseurl ?>" class="text-decoration-none containerUnderlined" style="border-radius: 100px; color: #fff;">
                 <p class="m-0 p-0 underlined">retour à</p>

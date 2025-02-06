@@ -19,6 +19,9 @@
                     ✔️ Analyser les appels téléphoniques pour identifier des réseaux criminels 📞<br>
                     ✔️ Localiser les déplacements des suspects en fonction des antennes relais 📍<br>
                     ✔️ Explorer rapidement un dossier et retrouver les liens cachés entre les éléments 🔎<br>
+                    <?php
+                    var_dump($result);
+                    ?>
                 </p>
                 <br>
                 Cet outil donne aux forces de l’ordre une vision claire et détaillée des affaires, facilitant ainsi la prise de décision et l’avancement des enquêtes. CrimeLab, parce que chaque détail compte. 🕵️‍♂️<br>

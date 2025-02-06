@@ -38,6 +38,12 @@ function get_route(){
 $route = get_route();
 
 
-// Chargement de la route correspondante
-load_route($route);
+//load_route($route);
+try {
+    load_route($route);
+} catch (Exception $e) {
+    $title = 'error: 503';
+    require_once __DIR__ . '/assets/error/503.php';
+}
+
 ?>
