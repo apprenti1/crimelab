@@ -1,0 +1,18 @@
+##------Environment vars controll Ru3Conc7p------##
+BASEURL="http://localhost:8000/"
+
+##<-----Set security encryption----->##
+ENCRYPTION_ALGO="aes-256-cbc"
+ENCRYPTION_KEY="96b2cc8c551897eb7091840c79fd765a2b819636994fdcaeedd3458f66f9ed25"
+##<-----Set security encryption----->##
+
+
+
+##<-----Set database connection----->##
+#/ sqlite_DATABASE_URL="sqlite:///%kernel.project_dir%/var/data.db"
+#/ mysql_DATABASE_URL="mysql://app:!ChangeMe!@127.0.0.1:3306/app?serverVersion=8.0.32&charset=utf8mb4"
+#/ mysql_DATABASE_URL="mysql://root:@127.0.0.1:3306/Ru3Conc7p?serverVersion=10.11.2-MariaDB&charset=utf8mb4"
+#/ postgresql_DATABASE_URL="postgresql://app:!ChangeMe!@127.0.0.1:5432/app?serverVersion=15&charset=utf8"
+NEO4J_DATABASE_URL="bolt://neo4j:password@localhost:7687"
+MONGODB_DATABASE_URL="mongodb://admin:password@localhost:27017"
+##<-----Set database connection----->##
