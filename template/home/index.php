@@ -9,23 +9,20 @@
                 WELCOME
             </h2>
             <p class="">
-            <strong>CrimeLab - L'Analyse Criminelle Réinventée 🔍🚔</strong><br>
-            <p class="ms-3">
-                CrimeLab est un outil innovant conçu pour aider les enquêteurs à relier efficacement les éléments d’une affaire criminelle. Grâce à une interface intuitive, il permet de centraliser toutes les informations essentielles : suspects, témoins, lieux, témoignages et communications téléphoniques.<br>
-                <br>
-                Avec CrimeLab, il devient possible de :<br>
-                <p class="ms-5">
-                    ✔️ Visualiser les connexions entre individus et événements 📌<br>
-                    ✔️ Analyser les appels téléphoniques pour identifier des réseaux criminels 📞<br>
-                    ✔️ Localiser les déplacements des suspects en fonction des antennes relais 📍<br>
-                    ✔️ Explorer rapidement un dossier et retrouver les liens cachés entre les éléments 🔎<br>
-                    <?php
-                    var_dump($result);
-                    ?>
+                <strong>CrimeLab - L'Analyse Criminelle Réinventée 🔍🚔</strong><br>
+                <p class="ms-3">
+                    CrimeLab est un outil innovant conçu pour aider les enquêteurs à relier efficacement les éléments d’une affaire criminelle. Grâce à une interface intuitive, il permet de centraliser toutes les informations essentielles : suspects, témoins, lieux, témoignages et communications téléphoniques.<br>
+                    <br>
+                    Avec CrimeLab, il devient possible de :<br>
+                    <p class="ms-5">
+                        ✔️ Visualiser les connexions entre individus et événements 📌<br>
+                        ✔️ Analyser les appels téléphoniques pour identifier des réseaux criminels 📞<br>
+                        ✔️ Localiser les déplacements des suspects en fonction des antennes relais 📍<br>
+                        ✔️ Explorer rapidement un dossier et retrouver les liens cachés entre les éléments 🔎<br>
+                    </p>
+                    <br>
+                    Cet outil donne aux forces de l’ordre une vision claire et détaillée des affaires, facilitant ainsi la prise de décision et l’avancement des enquêtes. CrimeLab, parce que chaque détail compte. 🕵️‍♂️<br>
                 </p>
-                <br>
-                Cet outil donne aux forces de l’ordre une vision claire et détaillée des affaires, facilitant ainsi la prise de décision et l’avancement des enquêtes. CrimeLab, parce que chaque détail compte. 🕵️‍♂️<br>
-            </p>
             </p>
         </div>
         <div class="col-12 pt-5 pb-3 col-md-5 min-vh-0 min-vh-md-100 pe-1 d-flex flex-column align-items-center justify-content-center">

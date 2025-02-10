@@ -15,4 +15,5 @@ ENCRYPTION_KEY="96b2cc8c551897eb7091840c79fd765a2b819636994fdcaeedd3458f66f9ed25
 #/ postgresql_DATABASE_URL="postgresql://app:!ChangeMe!@127.0.0.1:5432/app?serverVersion=15&charset=utf8"
 NEO4J_DATABASE_URL="bolt://neo4j:password@localhost:7687"
 MONGODB_DATABASE_URL="mongodb://admin:password@localhost:27017"
+DB_NAME="crimelab"
 ##<-----Set database connection----->##

@@ -6,6 +6,7 @@ use MongoDB\Client;
 
 class Utilities {
     private static $dotenv = null;
+    public static $basepath = '../';
 
     public static function loadEnv() {
         if (self::$dotenv === null) {

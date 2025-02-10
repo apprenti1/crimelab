@@ -4,6 +4,7 @@ require_once '../system/Utilities.php';
 
 require $basepath.'vendor/autoload.php';
 
+Utilities::$basepath = $basepath;
 Utilities::loadEnv();
 Utilities::generateKey();
 function load_route($route) {

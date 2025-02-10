@@ -31,11 +31,11 @@ D'accord, comme tu utilises un framework type Symfony, on va structurer les tâc
 
 ### **3.1. Entités MongoDB (Documents ODM)**
 
-- [ ] `Affaire.php`
-- [ ] `Individu.php`
-- [ ] `Lieu.php`
-- [ ] `Temoignage.php`
-- [ ] `Fadette.php`
+- [X] `Affaire.php`
+- [X] `Individu.php`
+- [X] `Lieu.php`
+- [X] `Temoignage.php`
+- [X] `Fadette.php`
 
 ### **3.2. Entités Neo4J (Noeuds et Relations)**
 
@@ -52,11 +52,11 @@ D'accord, comme tu utilises un framework type Symfony, on va structurer les tâc
 
 ### **4.1. Repositories MongoDB**
 
-- [ ] `AffaireRepository`
-- [ ] `IndividuRepository`
-- [ ] `LieuRepository`
-- [ ] `TemoignageRepository`
-- [ ] `FadetteRepository`
+- [X] `AffaireRepository`
+- [X] `IndividuRepository`
+- [X] `LieuRepository`
+- [X] `TemoignageRepository`
+- [X] `FadetteRepository`
 
 ### **4.2. Services pour Neo4J**
 
