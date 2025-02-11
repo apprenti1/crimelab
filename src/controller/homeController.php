@@ -26,6 +26,9 @@ $data = [
 ]; 
 $result = $collection->insertOne($data); 
 echo "Document ins r  avec ID : " . $result->getInsertedId();
+
+
+$title = 'Accueil';
 $template = Utilities::$basepath.'template/home/index.php';
 require Utilities::$basepath.'template/base.php';
 ?>

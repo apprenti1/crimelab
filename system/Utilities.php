@@ -38,7 +38,7 @@ class Utilities {
         return [
             'driver' => $parsedUrl['scheme'],
             'host' => $parsedUrl['host'],
-            'port' => isset($parsedUrl['port']) ? $parsedUrl['port'] : null,
+            'port' => isset($parsedUrl['port']) ? $parsedUrl['port'] : 7687,
             'username' => $parsedUrl['user'],
             'password' => isset($parsedUrl['pass']) ? $parsedUrl['pass'] : '',
             'dbname' => ltrim($parsedUrl['path'], '/'),
@@ -49,10 +49,12 @@ class Utilities {
 
     public static function connectNeo4j() {
 
+    $url = parse_url($_ENV['NEO4J_DATABASE_URL']);
+    var_dump($url);
         $driver = DriverFactory::create(
-            'bolt://neo4j:7687', 
+            ($url['scheme'].'://'.$url['host'].':'.$url['port']), 
             null, 
-            Authenticate::basic('neo4j', 'password')
+            Authenticate::basic($url['user'], $url['pass'])
         );
         
         
