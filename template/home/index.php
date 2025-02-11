@@ -1,5 +1,5 @@
 
-<link rel="stylesheet" href="<?= $baseurl ?>assets/css/home.css">
+<link rel="stylesheet" href="<?= Utilities::$baseurl ?>assets/css/home.css">
 <div id="background" class="background">
         <img class="svg-icon" alt="" src="assets/img/icon.svg"></img>
     </div>
@@ -40,7 +40,7 @@ for ($i=0; $i < 1; $i++) {
 <a href="#test" class="text-decoration-none product-thunmbail overflow-hidden d-flex align-items-center flex-column">
     <img src="assets/img/articles/Collier universel X series C0-U41X-S/photo_2024-09-08_23-41-45.jpg" alt="" class="p-3">
     <h3 class="mx-1 mt-2" style="font-size: 1.2rem; color: #fff;">
-        Collier en latex
+        test
         <p class="mx-1 mt-2" style="font-size: 1rem;">personalisé</p>
         <p class="orbitron mx-1 mt-2" style="font-size: 1.2rem;">150€</p>
     </h3>

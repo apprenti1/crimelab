@@ -7,7 +7,7 @@
     background-color: #000;
 }
 .content div{
-    height: 90px !important;
+    height: fit-content !important;
 }
 
 .container {

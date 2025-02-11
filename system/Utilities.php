@@ -3,10 +3,13 @@ require $basepath.'vendor/autoload.php';
 use Dotenv\Dotenv;
 use Laudis\Neo4j\ClientBuilder;
 use MongoDB\Client;
+use \Laudis\Neo4j\DriverFactory;
+use \Laudis\Neo4j\Authentication\Authenticate;
 
 class Utilities {
     private static $dotenv = null;
     public static $basepath = '../';
+    public static $baseurl = '../';
 
     public static function loadEnv() {
         if (self::$dotenv === null) {
@@ -45,13 +48,15 @@ class Utilities {
 
 
     public static function connectNeo4j() {
-        $url = $_ENV['NEO4J_DATABASE_URL'];
-        $client = ClientBuilder::create()
-    ->withDriver('neo4j', 'bolt://localhost:7687') 
-    ->withCredentials('neo4j', 'password')
-    ->build();
-        $result = $client->run('RETURN "Hello, Neo4j!" AS message');
-        return $client;
+
+        $driver = DriverFactory::create(
+            'bolt://neo4j:7687', 
+            null, 
+            Authenticate::basic('neo4j', 'password')
+        );
+        
+        
+        return $driver;
     }
 
 

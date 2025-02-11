@@ -3,3 +3,5 @@
 
 # Ignorer le fichier .env contenant les variables sensibles
 .env
+
+/.vscode/

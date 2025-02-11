@@ -1,30 +1,36 @@
 <div class="navbar">
-<link rel="stylesheet" href="<?= $baseurl ?>assets/css/navbar.css">
+<link rel="stylesheet" href="<?= Utilities::$baseurl ?>assets/css/navbar.css">
 
     <div class="content w-100 h-100 d-flex flex-wrap text-white">
         
-        <div class="col-12 col-sm-8 col-md-5 h-100 d-flex align-items-center p-3 justify-content-center">
-            <a href="<?= $baseurl.((str_starts_with($route, 'home'))?'#accueil':'') ?>" class="<?= ($route == "home")? "everunderlined " : "" ?>p-2 text-decoration-none d-flex align-items-center justify-content-center containerUnderlined animpadding" style="border-radius: 100px; height: 60px; color: #fff;">
+        <div class="col-12 col-sm-8 col-md-5 h-100 d-flex align-items-center p-3 flex-wrap justify-content-center">
+            <a href="<?= Utilities::$baseurl.((str_starts_with($route, 'home'))?'#accueil':'') ?>" class="<?= ($route == "home")? "everunderlined " : "" ?>p-2 text-decoration-none d-flex align-items-center justify-content-center containerUnderlined animpadding" style="border-radius: 100px; height: 60px; color: #fff;">
                 <p class="m-0 p-2 text-center underlined">Acueil</p>
             </a>
-            <a href="<?= $baseurl.((str_starts_with($route, 'home'))?'#boutique':'') ?>" class="<?= ($route == "home")? "everunderlined " : "" ?>p-2 text-decoration-none d-flex align-items-center justify-content-center containerUnderlined animpadding" style="border-radius: 100px; height: 60px; color: #fff;">
+            <a href="<?= Utilities::$baseurl.((str_starts_with($route, 'home'))?'#boutique':'') ?>" class="<?= ($route == "home")? "everunderlined " : "" ?>p-2 text-decoration-none d-flex align-items-center justify-content-center containerUnderlined animpadding" style="border-radius: 100px; height: 60px; color: #fff;">
                 <p class="m-0 p-2 text-center underlined">Dossiers</p>
             </a>
-            <a href="<?= $baseurl.((str_starts_with($route, 'home'))?'#boutique':'') ?>" class="<?= ($route == "home")? "everunderlined " : "" ?>p-2 text-decoration-none d-flex align-items-center justify-content-center containerUnderlined animpadding" style="border-radius: 100px; height: 60px; color: #fff;">
-                <p class="m-0 p-2 text-center underlined">Contacts</p>
+            <a href="<?= Utilities::$baseurl.((str_starts_with($route, 'home'))?'#boutique':'') ?>" class="<?= ($route == "home")? "everunderlined " : "" ?>p-2 text-decoration-none d-flex align-items-center justify-content-center containerUnderlined animpadding" style="border-radius: 100px; height: 60px; color: #fff;">
+                <p class="m-0 p-2 text-center underlined">Fadettes</p>
             </a>
-            <a href="<?= $baseurl.((str_starts_with($route, 'home'))?'#boutique':'') ?>" class="<?= ($route == "home")? "everunderlined " : "" ?>p-2 text-decoration-none d-flex align-items-center justify-content-center containerUnderlined animpadding" style="border-radius: 100px; height: 60px; color: #fff;">
+            <a href="<?= Utilities::$baseurl.((str_starts_with($route, 'home'))?'#boutique':'') ?>" class="<?= ($route == "home")? "everunderlined " : "" ?>p-2 text-decoration-none d-flex align-items-center justify-content-center containerUnderlined animpadding" style="border-radius: 100px; height: 60px; color: #fff;">
+                <p class="m-0 p-2 text-center underlined">Individus</p>
+            </a>
+            <a href="<?= Utilities::$baseurl.((str_starts_with($route, 'home'))?'#boutique':'') ?>" class="<?= ($route == "home")? "everunderlined " : "" ?>p-2 text-decoration-none d-flex align-items-center justify-content-center containerUnderlined animpadding" style="border-radius: 100px; height: 60px; color: #fff;">
+                <p class="m-0 p-2 text-center underlined">Lieux</p>
+            </a>
+            <a href="<?= Utilities::$baseurl.((str_starts_with($route, 'home'))?'#boutique':'') ?>" class="<?= ($route == "home")? "everunderlined " : "" ?>p-2 text-decoration-none d-flex align-items-center justify-content-center containerUnderlined animpadding" style="border-radius: 100px; height: 60px; color: #fff;">
                 <p class="m-0 p-2 text-center underlined">A propos</p>
             </a>
             <?php if (str_starts_with($route, 'admin')) { ?>
-            <a href="<?= $baseurl ?>admin<?= (str_starts_with($route, 'admin'))?'#admin':'' ?>" class="<?= (str_starts_with($route, 'admin'))? "everunderlined " : "" ?>p-2 text-decoration-none d-flex align-items-center justify-content-center containerUnderlined animpadding" style="border-radius: 100px; height: 60px; color: #fff;">
-                <p class="m-0 p-2 text-center underlined"> <img class="icon inverted" style="height: 30px;" src="<?= $baseurl ?>assets/img/admin.png" alt=""> Admin</p>
+            <a href="<?= Utilities::$baseurl ?>admin<?= (str_starts_with($route, 'admin'))?'#admin':'' ?>" class="<?= (str_starts_with($route, 'admin'))? "everunderlined " : "" ?>p-2 text-decoration-none d-flex align-items-center justify-content-center containerUnderlined animpadding" style="border-radius: 100px; height: 60px; color: #fff;">
+                <p class="m-0 p-2 text-center underlined"> <img class="icon inverted" style="height: 30px;" src="<?= Utilities::$baseurl ?>assets/img/admin.png" alt=""> Admin</p>
             </a>
             <?php } ?>
         </div>
         <div class="col-12 col-sm-4 col-md-2 h-100 d-flex justify-content-center align-items-center">
-            <a class="h-100" href="<?= $baseurl ?>">
-                <img src="<?= $baseurl ?>assets/img/brand.svg" alt="Icon crimelab" class="h-100 py-md-3 py-sm-3 py-3 inverted">
+            <a class="h-100" href="<?= Utilities::$baseurl ?>">
+                <img src="<?= Utilities::$baseurl ?>assets/img/brand.svg" alt="Icon crimelab" class="py-md-3 py-sm-3 py-3 inverted" style="height: 90px;">
             </a>
         </div>
         <div class="col-12 col-sm-12 col-md-5 h-100 d-flex align-items-center justify-content-center">

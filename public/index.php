@@ -1,46 +1,48 @@
 <?php
-$basepath = '../';
-require_once '../system/Utilities.php';
+try {
 
-require $basepath.'vendor/autoload.php';
+    $basepath = '../';
+    require_once '../system/Utilities.php';
 
-Utilities::$basepath = $basepath;
-Utilities::loadEnv();
-Utilities::generateKey();
-function load_route($route) {
-    // Chemin du fichier de la route
-    $routeFile = __DIR__ . '/../src/route/' . $route . '.php';
+    require $basepath.'vendor/autoload.php';
+
+    Utilities::loadEnv();
+    Utilities::generateKey();
+    Utilities::$basepath = $basepath;
     $baseurl = $_ENV['BASEURL'];
-    //var_dump($route);
-    
-    $baseurl .= str_repeat('../', substr_count($route, '/'));
-    if (file_exists($routeFile)) {
-        require_once $routeFile;
+    Utilities::$baseurl = $basepath;
+    function load_route($route) {
+        // Chemin du fichier de la route
+        $routeFile = __DIR__ . '/../src/route/' . $route . '.php';
+        //var_dump($route);
+        
+        Utilities::$baseurl .= str_repeat('../', substr_count($route, '/'));
+        if (file_exists($routeFile)) {
+            require_once $routeFile;
 
-    } else {
-        $title = 'error: 404';
-        require_once __DIR__ . '/assets/error/404.php';
+        } else {
+            $title = 'error: 404';
+            require_once __DIR__ . '/assets/error/404.php';
+        }
     }
-}
-function get_route(){
-    // Récupération de la route depuis l'URL
-    $request_uri = trim($_SERVER['REQUEST_URI'], '/');
-    $script_name = trim(dirname($_SERVER['SCRIPT_NAME']), '/');
+    function get_route(){
+        // Récupération de la route depuis l'URL
+        $request_uri = trim($_SERVER['REQUEST_URI'], '/');
+        $script_name = trim(dirname($_SERVER['SCRIPT_NAME']), '/');
 
-    if ($script_name) {
-        $request_uri = preg_replace('/^' . preg_quote($script_name, '/') . '/', '', $request_uri);
+        if ($script_name) {
+            $request_uri = preg_replace('/^' . preg_quote($script_name, '/') . '/', '', $request_uri);
+        }
+
+        $request_uri = trim($request_uri, '/');
+        $route = $request_uri ? $request_uri : 'home';
+        return $route;
     }
 
-    $request_uri = trim($request_uri, '/');
-    $route = $request_uri ? $request_uri : 'home';
-    return $route;
-}
-
-$route = get_route();
+    $route = get_route();
 
 
 //load_route($route);
-try {
     load_route($route);
 } catch (Exception $e) {
     $title = 'error: 503';

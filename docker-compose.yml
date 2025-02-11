@@ -1,0 +1,43 @@
+services:
+  php:
+    image: php:8.2-apache
+    build: .
+    container_name: php-app
+    ports:
+      - "8000:80"
+    volumes:
+      - ./:/var/www/crimelab:delegated    # Lier tout le répertoire local à /var/www/crimelab dans le conteneur
+    networks:
+      - appnet
+    depends_on:
+      - mongodb
+      - neo4j
+
+
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+    ports:
+      - "27017:27017"
+    networks:
+      - appnet
+
+  neo4j:
+    image: neo4j:latest
+    container_name: neo4j
+    environment:
+      - NEO4J_AUTH=neo4j/password
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    networks:
+      - appnet
+
+networks:
+  appnet:
+    driver: bridge
