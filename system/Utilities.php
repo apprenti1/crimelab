@@ -50,7 +50,6 @@ class Utilities {
     public static function connectNeo4j() {
 
     $url = parse_url($_ENV['NEO4J_DATABASE_URL']);
-    var_dump($url);
         $driver = DriverFactory::create(
             ($url['scheme'].'://'.$url['host'].':'.$url['port']), 
             null, 

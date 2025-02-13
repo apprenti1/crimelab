@@ -2,25 +2,24 @@
 <link rel="stylesheet" href="<?= Utilities::$baseurl ?>assets/css/navbar.css">
 
     <div class="content w-100 h-100 d-flex flex-wrap text-white">
-        
         <div class="col-12 col-sm-8 col-md-5 h-100 d-flex align-items-center p-3 flex-wrap justify-content-center">
-            <a href="<?= Utilities::$baseurl.((str_starts_with($route, 'home'))?'#accueil':'') ?>" class="<?= ($route == "home")? "everunderlined " : "" ?>p-2 text-decoration-none d-flex align-items-center justify-content-center containerUnderlined animpadding" style="border-radius: 100px; height: 60px; color: #fff;">
-                <p class="m-0 p-2 text-center underlined">Acueil</p>
+            <a href="<?=Utilities::$baseurl.((str_starts_with($route, 'home'))?'#accueil':'')?>" class="p-2 text-decoration-none d-flex align-items-center justify-content-center containerUnderlined animpadding" style="border-radius: 100px; height: 60px; color: #fff;">
+                <p class="m-0 p-2 text-center underlined<?=str_starts_with($route, 'home')? " everunderlined" : ""?>">Acueil</p>
             </a>
-            <a href="<?= Utilities::$baseurl.((str_starts_with($route, 'home'))?'#boutique':'') ?>" class="<?= ($route == "home")? "everunderlined " : "" ?>p-2 text-decoration-none d-flex align-items-center justify-content-center containerUnderlined animpadding" style="border-radius: 100px; height: 60px; color: #fff;">
-                <p class="m-0 p-2 text-center underlined">Dossiers</p>
+            <a href="<?=Utilities::$baseurl.''?>" class="p-2 text-decoration-none d-flex align-items-center justify-content-center containerUnderlined animpadding" style="border-radius: 100px; height: 60px; color: #fff;">
+                <p class="m-0 p-2 text-center underlined<?=str_starts_with($route, 'affaire')? " everunderlined" : ""?>">Dossiers</p>
             </a>
-            <a href="<?= Utilities::$baseurl.((str_starts_with($route, 'home'))?'#boutique':'') ?>" class="<?= ($route == "home")? "everunderlined " : "" ?>p-2 text-decoration-none d-flex align-items-center justify-content-center containerUnderlined animpadding" style="border-radius: 100px; height: 60px; color: #fff;">
-                <p class="m-0 p-2 text-center underlined">Fadettes</p>
+            <a href="<?=Utilities::$baseurl.''?>" class="p-2 text-decoration-none d-flex align-items-center justify-content-center containerUnderlined animpadding" style="border-radius: 100px; height: 60px; color: #fff;">
+                <p class="m-0 p-2 text-center underlined<?=str_starts_with($route, 'fadette')? " everunderlined" : ""?>">Fadettes</p>
             </a>
-            <a href="<?= Utilities::$baseurl.((str_starts_with($route, 'home'))?'#boutique':'') ?>" class="<?= ($route == "home")? "everunderlined " : "" ?>p-2 text-decoration-none d-flex align-items-center justify-content-center containerUnderlined animpadding" style="border-radius: 100px; height: 60px; color: #fff;">
-                <p class="m-0 p-2 text-center underlined">Individus</p>
+            <a href="<?=Utilities::$baseurl.''?>" class="p-2 text-decoration-none d-flex align-items-center justify-content-center containerUnderlined animpadding" style="border-radius: 100px; height: 60px; color: #fff;">
+                <p class="m-0 p-2 text-center underlined<?=str_starts_with($route, 'individu')? " everunderlined" : ""?>">Individus</p>
             </a>
-            <a href="<?= Utilities::$baseurl.((str_starts_with($route, 'home'))?'#boutique':'') ?>" class="<?= ($route == "home")? "everunderlined " : "" ?>p-2 text-decoration-none d-flex align-items-center justify-content-center containerUnderlined animpadding" style="border-radius: 100px; height: 60px; color: #fff;">
-                <p class="m-0 p-2 text-center underlined">Lieux</p>
+            <a href="<?=Utilities::$baseurl.'lieu'?>" class="p-2 text-decoration-none d-flex align-items-center justify-content-center containerUnderlined animpadding" style="border-radius: 100px; height: 60px; color: #fff;">
+                <p class="m-0 p-2 text-center underlined<?=str_starts_with($route, 'lieu')? " everunderlined" : ""?>">Lieux</p>
             </a>
-            <a href="<?= Utilities::$baseurl.((str_starts_with($route, 'home'))?'#boutique':'') ?>" class="<?= ($route == "home")? "everunderlined " : "" ?>p-2 text-decoration-none d-flex align-items-center justify-content-center containerUnderlined animpadding" style="border-radius: 100px; height: 60px; color: #fff;">
-                <p class="m-0 p-2 text-center underlined">A propos</p>
+            <a href="<?=Utilities::$baseurl.''?>" class="p-2 text-decoration-none d-flex align-items-center justify-content-center containerUnderlined animpadding" style="border-radius: 100px; height: 60px; color: #fff;">
+                <p class="m-0 p-2 text-center underlined<?=str_starts_with($route, 'info')? " everunderlined" : ""?>">A propos</p>
             </a>
             <?php if (str_starts_with($route, 'admin')) { ?>
             <a href="<?= Utilities::$baseurl ?>admin<?= (str_starts_with($route, 'admin'))?'#admin':'' ?>" class="<?= (str_starts_with($route, 'admin'))? "everunderlined " : "" ?>p-2 text-decoration-none d-flex align-items-center justify-content-center containerUnderlined animpadding" style="border-radius: 100px; height: 60px; color: #fff;">

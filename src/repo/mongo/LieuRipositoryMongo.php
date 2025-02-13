@@ -1,6 +1,6 @@
 <?php
 
-require_once 'vendor/autoload.php'; // Charge Composer autoloader
+//require_once 'vendor/autoload.php'; // Charge Composer autoloader
 
 use MongoDB\Client;
 use MongoDB\BSON\ObjectId;

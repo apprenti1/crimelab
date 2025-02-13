@@ -130,3 +130,30 @@ input:focus-visible {
   transform: scaleX(0);
 }
 /* END underline animation */
+
+
+
+@media (max-width: 1041px) {
+  .background {
+      left: 50%;
+      top: 43%;
+  }
+  .undernavbar {
+      margin-top: 200px !important;
+  }
+}
+@media (max-width: 640px) {
+  .orbitron {
+      font-size: 3rem;
+  }
+  h3 {
+      font-size: 1.1rem !important;
+  }
+  .background {
+      top: 10%;
+      left: 50%;
+  }
+}
+.undernavbar {
+  margin-top: 110px !important;
+}
