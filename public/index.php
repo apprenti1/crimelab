@@ -27,7 +27,7 @@ try {
     }
     function get_route(){
         // Récupération de la route depuis l'URL
-        $request_uri = trim($_SERVER['REQUEST_URI'], '/');
+        $request_uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
         $script_name = trim(dirname($_SERVER['SCRIPT_NAME']), '/');
 
         if ($script_name) {
