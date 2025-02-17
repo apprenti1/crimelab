@@ -3,13 +3,18 @@
 //require_once 'vendor/autoload.php'; // Charge Composer autoloader
 
 use Laudis\Neo4j\ClientBuilder;
+require_once Utilities::$basepath.'src/entity/Individu.php';
+require_once Utilities::$basepath.'src/repo/neo/IndividuRepositoryNeo.php';
 
 class FadetteRepository {
     private $client;
+    
+    private $individuRepository;
 
     public function __construct() {
         // Connexion à Neo4j
         $this->client = Utilities::connectNeo4j();
+        $this->individuRepository = new IndividuRepository();
     }
 
     // Méthode pour insérer une fadette
@@ -21,13 +26,14 @@ class FadetteRepository {
         }) RETURN id(f)";
 
         $parameters = [
-            'individu_id' => $fadette->getIndividuId(),
+            'individu_id' => $fadette->getIndividu()->getId(),
             'appelants' => $fadette->getAppelants(),
-            'date' => $fadette->getDate()->format('Y-m-d H:i:s')
+            'date' => $fadette->getDate()
+            // 'date' => $fadette->getDate()->format('Y-m-d H:i:s')
         ];
 
         $result = $this->client->createSession()->run($query, $parameters);
-        return $result->firstRecord()->get('id(f)');
+        return $result[0]->get('id(f)');
     }
 
     // Méthode pour récupérer une fadette par son ID
@@ -36,12 +42,13 @@ class FadetteRepository {
         $result = $this->client->createSession()->run($query, ['id' => (int)$id]);
 
         if ($result->count() > 0) {
-            $record = $result->firstRecord()->get('f');
+            $record = $result[0]['f'];
             return new Fadette(
                 (string)$record->id(),
-                $record->get('individu_id'),
+                $this->individuRepository->findIndividuById($record->get('individu_id')),
                 $record->get('appelants'),
-                new DateTime($record->get('date'))
+                $record->get('date')
+                // new DateTime($record->get('date'))
             );
         }
         return null; // Retourne null si la fadette n'est pas trouvée
@@ -53,12 +60,16 @@ class FadetteRepository {
         $result = $this->client->createSession()->run($query);
         $fadettes = [];
         foreach ($result as $record) {
+            echo "<pre>";
+            var_dump($record->get('f'));
+            echo "</pre>";
             $node = $record->get('f');
             $fadettes[] = new Fadette(
-                (string)$node->id(),
-                $node->get('individu_id'),
-                $node->get('appelants'),
-                new DateTime($node->get('date'))
+                (string)$node['id'],
+                $this->individuRepository->findIndividuById($node['properties']['individu_id']),
+                $node['properties']['appelants'],
+                $node['properties']['date']
+                // new DateTime($node->get('date'))
             );
         }
         return $fadettes;
@@ -69,9 +80,10 @@ class FadetteRepository {
         $query = "MATCH (f:Fadette) WHERE id(f) = \$id SET f.individu_id = \$individu_id, f.appelants = \$appelants, f.date = \$date RETURN f";
         $parameters = [
             'id' => (int)$fadette->getId(),
-            'individu_id' => $fadette->getIndividuId(),
+            'individu_id' => $fadette->getIndividu()->getId(),
             'appelants' => $fadette->getAppelants(),
-            'date' => $fadette->getDate()->format('Y-m-d H:i:s')
+            'date' => $fadette->getDate()
+            // 'date' => $fadette->getDate()->format('Y-m-d H:i:s')
         ];
 
         $result = $this->client->createSession()->run($query, $parameters);

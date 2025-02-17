@@ -22,9 +22,12 @@
                 <?php foreach ($fadettes as $fadette) { ?>
                 <tr>
                     <td><?= $fadette->getId(); ?></td>
-                    <td><?= $fadette->getIndividu(); ?></td>
-                    <td><?= $fadette->getAppelants()['tel']; ?></td>
-                    <td><?= $fadette->getDate()->format('d/m/Y'); ?></td>
+                    <td><?= $fadette->getIndividu()->getPrenom()." ".$fadette->getIndividu()->getPrenom() ?></td>
+                    <!-- Todo : Revoir la gestion des types de appelants et de date -->
+                    <!-- <td><?php //echo $fadette->getAppelants()['tel']; ?></td> -->
+                    <td><?= $fadette->getAppelants(); ?></td>
+                    <!-- <td><? //echo $fadette->getDate()->format('d/m/Y'); ?></td> -->
+                    <td><?= $fadette->getDate(); ?></td>
                     <td class="d-flex justify-content-center">
                         <a href="<?=(Utilities::$baseurl.$route)?>/view/?id=<?= $fadette->getId() ?>" class="btn btn-primary m-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
