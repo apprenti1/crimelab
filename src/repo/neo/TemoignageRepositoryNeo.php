@@ -17,7 +17,7 @@ class TemoignageRepository {
     // Méthode pour insérer un témoignage
     public function insertTemoignage(Temoignage $temoignage) {
         $query = "CREATE (t: Temoignage { id: \$id, temoin: \$temoin, description: \$description, date: \$date, lieu: \$lieu }) RETURN t";
-        $result = $this->client->run($query, [
+        $result = $this->client->createSession()->run($query, [
             'id' => $temoignage->getId(),
             'temoin' => $temoignage->getTemoin(),
             'description' => $temoignage->getDescription(),
@@ -31,7 +31,7 @@ class TemoignageRepository {
     // Méthode pour récupérer un témoignage par son ID
     public function findTemoignageById($id) {
         $query = "MATCH (t: Temoignage) WHERE id(t) = \$id RETURN t";
-        $result = $this->client->run($query, ['id' => (int)$id]);
+        $result = $this->client->createSession()->run($query, ['id' => (int)$id]);
 
         if ($result->count() > 0) {
             $record = $result->singleRecord()->get('t');
@@ -49,7 +49,7 @@ class TemoignageRepository {
     // Méthode pour récupérer tous les témoignages
     public function findAllTemoignages() {
         $query = "MATCH (t: Temoignage) RETURN t";
-        $result = $this->client->run($query);
+        $result = $this->client->createSession()->run($query);
 
         $temoignages = [];
         foreach ($result->getRecords() as $record) {
@@ -68,7 +68,7 @@ class TemoignageRepository {
     // Méthode pour mettre à jour un témoignage
     public function updateTemoignage(Temoignage $temoignage) {
         $query = "MATCH (t: Temoignage) WHERE id(t) = \$id SET t.temoin = \$temoin, t.description = \$description, t.date = \$date, t.lieu = \$lieu RETURN t";
-        $result = $this->client->run($query, [
+        $result = $this->client->createSession()->run($query, [
             'id' => (int)$temoignage->getId(),
             'temoin' => $temoignage->getTemoin(),
             'description' => $temoignage->getDescription(),
@@ -82,7 +82,7 @@ class TemoignageRepository {
     // Méthode pour supprimer un témoignage
     public function deleteTemoignage($id) {
         $query = "MATCH (t: Temoignage) WHERE id(t) = \$id DELETE t";
-        $result = $this->client->run($query, ['id' => (int)$id]);
+        $result = $this->client->createSession()->run($query, ['id' => (int)$id]);
 
         return $result->count() > 0; // Retourne true si le témoignage a été supprimé
     }

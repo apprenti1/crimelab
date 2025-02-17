@@ -26,13 +26,13 @@ class LieuRepository {
             'affaires' => new CypherList($lieu->getAffaires())
         ];
 
-        return $this->client->run($query, $parameters);
+        return $this->client->createSession()->run($query, $parameters);
     }
 
     // Méthode pour récupérer un lieu par son ID
     public function findLieuById($id): ?Lieu {
         $query = "MATCH (l:Lieu {id: \$id}) RETURN l";
-        $result = $this->client->run($query, ['id' => (int)$id]);
+        $result = $this->client->createSession()->run($query, ['id' => (int)$id]);
 
         if ($result->count() > 0) {
             $record = $result->firstRecord();
@@ -51,7 +51,7 @@ class LieuRepository {
     public function findAllLieux(): array {
         $lieux = [];
         $query = "MATCH (l:Lieu) RETURN l";
-        $result = $this->client->run($query);
+        $result = $this->client->createSession()->run($query);
 
         foreach ($result->getRecords() as $record) {
             $lieux[] = new Lieu(
@@ -77,13 +77,13 @@ class LieuRepository {
             'affaires' => new CypherList($lieu->getAffaires())
         ];
 
-        return $this->client->run($query, $parameters);
+        return $this->client->createSession()->run($query, $parameters);
     }
 
     // Méthode pour supprimer un lieu
     public function deleteLieu($id): ResultSummary {
         $query = "MATCH (l:Lieu {id: \$id}) DELETE l";
-        return $this->client->run($query, ['id' => (int)$id]);
+        return $this->client->createSession()->run($query, ['id' => (int)$id]);
     }
 }
 

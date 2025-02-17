@@ -9,7 +9,7 @@
             <a href="<?=Utilities::$baseurl.''?>" class="p-2 text-decoration-none d-flex align-items-center justify-content-center containerUnderlined animpadding" style="border-radius: 100px; height: 60px; color: #fff;">
                 <p class="m-0 p-2 text-center underlined<?=str_starts_with($route, 'affaire')? " everunderlined" : ""?>">Dossiers</p>
             </a>
-            <a href="<?=Utilities::$baseurl.''?>" class="p-2 text-decoration-none d-flex align-items-center justify-content-center containerUnderlined animpadding" style="border-radius: 100px; height: 60px; color: #fff;">
+            <a href="<?=Utilities::$baseurl.'fadette'?>" class="p-2 text-decoration-none d-flex align-items-center justify-content-center containerUnderlined animpadding" style="border-radius: 100px; height: 60px; color: #fff;">
                 <p class="m-0 p-2 text-center underlined<?=str_starts_with($route, 'fadette')? " everunderlined" : ""?>">Fadettes</p>
             </a>
             <a href="<?=Utilities::$baseurl.''?>" class="p-2 text-decoration-none d-flex align-items-center justify-content-center containerUnderlined animpadding" style="border-radius: 100px; height: 60px; color: #fff;">

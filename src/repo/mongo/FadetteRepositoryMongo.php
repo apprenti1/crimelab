@@ -4,6 +4,7 @@ require_once 'vendor/autoload.php'; // Charge Composer autoloader
 
 use MongoDB\Client;
 use MongoDB\BSON\ObjectId;
+use MongoDB\BSON\UTCDateTime;
 
 class FadetteRepository {
     private $client;
@@ -19,7 +20,8 @@ class FadetteRepository {
     public function insertFadette(Fadette $fadette) {
         $data = [
             'individu_id' => $fadette->getIndividuId(),
-            'appelants' => $fadette->getAppelants() // Tableau des appelants
+            'appelants' => $fadette->getAppelants(), // Tableau des appelants
+            'date' => new UTCDateTime() // Date de la fadette
         ];
 
         // Insertion dans la base
@@ -35,7 +37,8 @@ class FadetteRepository {
             return new Fadette(
                 (string)$result['_id'],
                 $result['individu_id'],
-                $result['appelants']
+                $result['appelants'],
+                $result['date']->toDateTime()->format('Y-m-d H:i:s')
             );
         }
         return null; // Retourne null si la fadette n'est pas trouvée
@@ -50,7 +53,8 @@ class FadetteRepository {
             $fadettes[] = new Fadette(
                 (string)$document['_id'],
                 $document['individu_id'],
-                $document['appelants']
+                $document['appelants'],
+                $document['date']->toDateTime()->format('Y-m-d H:i:s')
             );
         }
 
@@ -63,7 +67,8 @@ class FadetteRepository {
             ['_id' => new ObjectId($fadette->getId())],
             ['$set' => [
                 'individu_id' => $fadette->getIndividuId(),
-                'appelants' => $fadette->getAppelants()
+                'appelants' => $fadette->getAppelants(),
+                'date' => new UTCDateTime($fadette->getDate()->format('Y-m-d H:i:s'))
             ]]
         );
 
@@ -77,3 +82,4 @@ class FadetteRepository {
     }
 }
 ?>
+

@@ -17,6 +17,17 @@ $communicationsCollection = $db->createCollection("communications");
 echo "Collections MongoDB créés.\n";
 
 /*
+
+$neo4jClient = Utilities::connectNeo4j()->createSession();
+
+$result = $neo4jClient->run('SHOW DATABASES');
+
+if ($result->count() <= 2) {
+    $neo4jClient->run('CREATE DATABASE CrimeLab');
+    echo "Base de données Neo4J créée.\n";
+} else {
+    echo "Base de données Neo4J existante. Aucune modification n'a été apportée.\n";
+}
 $neo4jClient = Utilities::connectNeo4j()->createSession();
 
 $result = $neo4jClient->run('SHOW DATABASES');

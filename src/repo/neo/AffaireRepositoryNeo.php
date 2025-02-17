@@ -15,7 +15,7 @@ class AffaireRepository {
     // Méthode pour insérer une affaire
     public function insertAffaire(Affaire $affaire) {
         $query = "CREATE (a: Affaire { titre: \$titre, image: \$image, description: \$description, date: \$date, lieux: \$lieux, individus: \$individus, temoignages: \$temoignages, fadettes: \$fadettes }) RETURN a";
-        $result = $this->client->run($query, [
+        $result = $this->client->createSession()->run($query, [
             'titre' => $affaire->getTitre(),
             'image' => $affaire->getImage(),
             'description' => $affaire->getDescription(),
@@ -32,7 +32,7 @@ class AffaireRepository {
     // Méthode pour récupérer une affaire par son ID
     public function findAffaireById($id) {
         $query = "MATCH (a: Affaire) WHERE id(a) = \$id RETURN a";
-        $result = $this->client->run($query, ['id' => (int)$id]);
+        $result = $this->client->createSession()->run($query, ['id' => (int)$id]);
 
         if ($result->count() > 0) {
             $record = $result->singleRecord()->get('a');
@@ -54,7 +54,7 @@ class AffaireRepository {
     // Méthode pour récupérer toutes les affaires
     public function findAllAffaires() {
         $affaires = [];
-        $result = $this->client->run("MATCH (a: Affaire) RETURN a");
+        $result = $this->client->createSession()->run("MATCH (a: Affaire) RETURN a");
 
         foreach ($result->getRecords() as $record) {
             $affaires[] = new Affaire(
@@ -76,7 +76,7 @@ class AffaireRepository {
     // Méthode pour mettre à jour une affaire
     public function updateAffaire(Affaire $affaire) {
         $query = "MATCH (a: Affaire) WHERE id(a) = \$id SET a = \$affaire RETURN a";
-        $result = $this->client->run($query, [
+        $result = $this->client->createSession()->run($query, [
             'id' => (int)$affaire->getId(),
             'affaire' => [
                 'titre' => $affaire->getTitre(),
@@ -96,7 +96,7 @@ class AffaireRepository {
     // Méthode pour supprimer une affaire
     public function deleteAffaire($id) {
         $query = "MATCH (a: Affaire) WHERE id(a) = \$id DELETE a";
-        $result = $this->client->run($query, ['id' => (int)$id]);
+        $result = $this->client->createSession()->run($query, ['id' => (int)$id]);
 
         return $result->getStatistics()->getNodesDeleted() > 0;
     }
