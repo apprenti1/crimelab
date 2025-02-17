@@ -9,7 +9,7 @@ class Individu {
     private $adresse;
     private $affaires; // tableau d'ObjectId
 
-    public function __construct($id, $nom, $prenom, $statut, $telephone, $adresse, $affaires) {
+    public function __construct($id, $nom, $prenom, $statut, $telephone, $adresse, $affaires = null) {
         $this->id = $id;
         $this->nom = $nom;
         $this->prenom = $prenom;

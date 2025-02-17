@@ -40,17 +40,16 @@ class IndividuRepository {
     public function findIndividuById($id) {
         $query = "MATCH (i:Individu) WHERE id(i) = \$id RETURN i";
         $result = $this->client->createSession()->run($query, ['id' => (int)$id]);
-
         if ($result->count() > 0) {
-            $record = $result->firstRecord()->get('i');
+            $result = $result[0]['i'];
             return new Individu(
-                (string)$record->id(),
-                $record->get('nom'),
-                $record->get('prenom'),
-                $record->get('statut'),
-                $record->get('telephone'),
-                $record->get('adresse'),
-                $record->get('affaires') ?? []
+                (int)$result['id'],
+                $result['properties']['nom'],
+                $result['properties']['prenom'],
+                $result['properties']['statut'],
+                $result['properties']['telephone'],
+                $result['properties']['adresse'],
+                $result['properties']['affaires'] ?? []
             );
         }
         return null;

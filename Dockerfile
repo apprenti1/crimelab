@@ -27,7 +27,7 @@ COPY ./docker/apache/default.conf /etc/apache2/sites-available/000-default.conf
 COPY . /var/www/crimelab/
 
 # Exposer le port 80 pour accéder à l'application
-EXPOSE 80
+EXPOSE 86
 
 # Lancer Apache
 CMD ["apache2-foreground"]

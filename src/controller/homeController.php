@@ -16,7 +16,7 @@ $clientneo = Utilities::connectNeo4j();
 
 $session = $clientneo->createSession();
 $result = $session->run("MATCH (n) WHERE n.name IS NOT NULL RETURN DISTINCT 'node' as entity, n.name AS name LIMIT 25 UNION ALL MATCH ()-[r]-() WHERE r.name IS NOT NULL RETURN DISTINCT 'relationship' AS entity, r.name AS name LIMIT 25");
-var_dump($result[0]);
+// var_dump($result[0]);
         
 $collection = $client->test->users;
 $data = [ 
