@@ -12,16 +12,31 @@ $fadetteRepository = new FadetteRepository();
 if (strtolower($route) === 'fadette') {
     if (isset($_POST['submit'])) {
         if ($_POST['submit'] === 'new') {
-            $nom = $_POST['nom'];
-            $prenom = $_POST['prenom'];
-            $adresse = $_POST['adresse'];
-            $telephone = $_POST['telephone'];
             $appelants = $_POST['appelants'];
             $date = $_POST['date'];
-            $individu = new Individu(null, $nom, $prenom, "", $telephone, $adresse);
+            $individu_id = $_POST['individu_id'];
+            $individu = $individuRepository->findIndividuById($individu_id);
             $individuRepository->insertIndividu($individu);
             $fadette = new Fadette(null, $individu, $appelants, $date);
-            $fadetteRepository->insertFadette($fadette);
+            $fadette->setId($fadetteRepository->insertFadette($fadette));
+
+
+
+            $individuAppelant = $individuRepository->findIndividuByTel($appelants);
+            $individuRepository->createRelation($individu, $fadette);
+            if (isset($individuAppelant)) {
+                $individuRepository->createRelation($individuAppelant, $fadette);
+            }
+
+
+
+
+
+
+
+
+
+
         }
         elseif ($_POST['submit'] === 'edit') {
             $id = $_POST['id'];
@@ -43,13 +58,13 @@ if (strtolower($route) === 'fadette') {
     require Utilities::$basepath.'template/base.php';
 }
 elseif (strtolower($route) === 'fadette/new') {
-    
+    $individus = $individuRepository->findAllIndividus();
     $title = 'Ajouter une fadette';
     $template = Utilities::$basepath.'template/fadette/new.php';
     require Utilities::$basepath.'template/base.php';
 }
 elseif (strtolower($route) === 'fadette/edit') {
-    var_dump($_GET);
+    $individus = $individuRepository->findAllIndividus();
     $id = $_GET['id'];
     $fadette = $fadetteRepository->findFadetteById($id);
     $title = 'Modifier une fadette';

@@ -1,15 +1,15 @@
 <?php
 
 class Individu {
-    private $id;
-    private $nom;
-    private $prenom;
-    private $statut;
-    private $telephone;
-    private $adresse;
-    private $affaires; // tableau d'ObjectId
+    public $id;
+    public $nom;
+    public $prenom;
+    public $statut;
+    public $telephone;
+    public $adresse;
+    public $affaires; // tableau d'ObjectId
 
-    public function __construct($id, $nom, $prenom, $statut, $telephone, $adresse, $affaires = null) {
+    public function __construct($id, $nom, $prenom, $statut, $telephone, $adresse, $affaires) {
         $this->id = $id;
         $this->nom = $nom;
         $this->prenom = $prenom;
