@@ -14,7 +14,7 @@ try {
                 $prenom = $_POST['prenom'];
                 $adresse = $_POST['adresse'];
                 $telephone = $_POST['telephone'];
-                $individu = new Individu(null, $nom, $prenom, "", $telephone, $adresse);
+                $individu = new Individu(null, $nom, $prenom, "", $telephone, $adresse, null);
                 $individuRepository->insertIndividu($individu);
             }
             elseif ($_POST['submit'] === 'edit') {
@@ -23,7 +23,7 @@ try {
                 $prenom = $_POST['prenom'];
                 $adresse = $_POST['adresse'];
                 $telephone = $_POST['telephone'];
-                $individu = new Individu($id, $nom, $prenom, "", $telephone, $adresse);
+                $individu = new Individu($id, $nom, $prenom, "", $telephone, $adresse, null);
                 $individuRepository->updateIndividu($individu);
             }
             elseif ($_POST['submit'] === 'delete') {
@@ -55,6 +55,24 @@ try {
         $title = 'Voir un individu';
         $template = Utilities::$basepath.'template/individu/view.php';
         require Utilities::$basepath.'template/base.php';
+    }
+    elseif (strtolower($route) === 'individu/ajax') {
+        header('Content-Type: application/json');
+
+        $limit = $_GET['limit'] ?? '10';
+        $id = isset($_GET['id']) && is_numeric($_GET['id']) ? (int)$_GET['id'] : null;
+        $nom = $_GET['nom'] ?? 'z';
+        $prenom = $_GET['prenom'] ?? 'z';
+
+        $result = Utilities::connectNeo4j()->createSession()->run(
+            'MATCH (i:Individu) WHERE 
+             '.(isset($id) ? ('id(i) = '.$id.' OR'):'').'
+             i.nom =~ "(?i).*'.$nom.'.*" 
+             OR i.prenom =~ "(?i).*'.$prenom.'.*" 
+             RETURN i'
+        );
+        
+        echo json_encode($result);
     }
 } catch (\Throwable $th) {
     echo "<pre>";

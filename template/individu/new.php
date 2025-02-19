@@ -11,19 +11,19 @@
             ?>
             <div class="form-group mb-3">
                 <label for="nom" class="form-label">Nom</label>
-                <input type="text" class="form-control" id="nom" name="nom" value="<?= isset($individu)?$individu->getNom():'N/A' ?>" required>
+                <input type="text" class="form-control" id="nom" name="nom" value="<?= isset($individu)?$individu->getNom():'' ?>" required>
             </div>
             <div class="form-group mb-3">
                 <label for="prenom" class="form-label">Prénom</label>
-                <input type="text" class="form-control" id="prenom" name="prenom" value="<?= isset($individu)?$individu->getPrenom():'N/A' ?>" required>
+                <input type="text" class="form-control" id="prenom" name="prenom" value="<?= isset($individu)?$individu->getPrenom():'' ?>" required>
             </div>
             <div class="form-group mb-3">
                 <label for="adresse" class="form-label">Adresse</label>
-                <input type="text" class="form-control" id="adresse" name="adresse" value="<?= isset($individu)?$individu->getAdresse():'N/A' ?>" required>
+                <input type="text" class="form-control" id="adresse" name="adresse" value="<?= isset($individu)?$individu->getAdresse():'' ?>" required>
             </div>
             <div class="form-group mb-3">
                 <label for="telephone" class="form-label">Numéro de téléphone</label>
-                <input type="tel" class="form-control" id="telephone" name="telephone" value="<?= isset($individu)?$individu->getTelephone():'N/A' ?>" required>
+                <input type="tel" class="form-control" id="telephone" name="telephone" value="<?= isset($individu)?$individu->getTelephone():'' ?>" required>
             </div>
             <button type="submit" name="submit" value="<?=$route=='individu/new'?'new':'edit'?>" class="btn btn-primary m-2 p-1">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">

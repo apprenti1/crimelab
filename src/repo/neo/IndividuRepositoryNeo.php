@@ -107,6 +107,34 @@ class IndividuRepository {
         $result = $this->client->createSession()->run($query, ['id' => (int)$id]);
         return $result->count() > 0;
     }
+
+public function findIndividuByTel($telephone) {
+    $query = "MATCH (i:Individu) WHERE i.telephone = \$telephone RETURN i";
+    $result = $this->client->createSession()->run($query, ['telephone' => $telephone]);
+    if ($result->count() > 0) {
+        $node = $result[0]->get('i');
+        return new Individu(
+            (int)$node['id'],
+            $node['properties']['nom'],
+            $node['properties']['prenom'],
+            $node['properties']['statut'],
+            $node['properties']['telephone'],
+            $node['properties']['adresse'],
+            $node['properties']['affaires'] ?? []
+        );
+    }
+    return null;
+}
+
+
+    // Méthode pour créer une relation entre un individu et une fadette
+    public function createRelation(Individu $individu, Fadette $fadette) {
+        $query = "MATCH (i:Individu), (f:Fadette) WHERE id(i) = ".$individu->getId()." AND id(f) = ".$fadette->getId()." CREATE (i)-[:FADETTE]->(f)";
+
+        $result = $this->client->createSession()->run($query, []);
+        return $result->count() > 0;
+    }
+
+
 }
 ?>
-

@@ -1,6 +1,5 @@
 <?php
 try {
-
     $basepath = '../';
     require_once '../system/Utilities.php';
 
@@ -14,7 +13,6 @@ try {
     function load_route($route) {
         // Chemin du fichier de la route
         $routeFile = __DIR__ . '/../src/route/' . $route . '.php';
-        //var_dump($route);
         
         Utilities::$baseurl .= str_repeat('../', substr_count($route, '/'));
         if (file_exists($routeFile)) {
@@ -42,7 +40,6 @@ try {
     $route = get_route();
 
 
-//load_route($route);
     load_route($route);
 } catch (Exception $e) {
     $title = 'error: 503';

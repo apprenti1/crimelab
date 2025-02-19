@@ -44,10 +44,10 @@ class FadetteRepository {
         if ($result->count() > 0) {
             $record = $result[0]['f'];
             return new Fadette(
-                (string)$record->id(),
-                $this->individuRepository->findIndividuById($record->get('individu_id')),
-                $record->get('appelants'),
-                $record->get('date')
+                (string)$record['id'],
+                $this->individuRepository->findIndividuById($record['properties']['individu_id']),
+                $record['properties']['appelants'],
+                $record['properties']['date']
                 // new DateTime($record->get('date'))
             );
         }
@@ -60,9 +60,6 @@ class FadetteRepository {
         $result = $this->client->createSession()->run($query);
         $fadettes = [];
         foreach ($result as $record) {
-            echo "<pre>";
-            var_dump($record->get('f'));
-            echo "</pre>";
             $node = $record->get('f');
             $fadettes[] = new Fadette(
                 (string)$node['id'],

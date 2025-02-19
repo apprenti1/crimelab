@@ -1,5 +1,5 @@
 <?php
 
-require '../src/controller/lieuController.php';
+require '../src/controller/fadetteController.php';
 
 ?>

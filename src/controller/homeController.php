@@ -6,10 +6,10 @@ require_once Utilities::$basepath.'src/repo/mongo/AffaireRepositoryMongo.php';
 
 
 $affaireRepository = new AffaireRepository();
-$affaire = new Affaire(null, 'Affaire 1', 'Affaire 1', 'Description de l\'affaire 1', '2021-01-01', [], [], [], []);
+$affaire = new Affaire(null, 'Affaire 1', 'Affaire 1', 'Description de l\'affaire 1', '2021-01-01', 'Paris', ['Individu 1', 'Individu 2'], ['Temoignage 1', 'Temoignage 2'], ['Fadette 1', 'Fadette 2']);
 $affaireRepository->insertAffaire($affaire);
-$test = $affaireRepository->findAffaireById('67aa00fb52d064e4470a9436');
 
+$test = $affaireRepository->findAffaireById('67aa00fb52d064e4470a9436');
 
 $client = Utilities::connectMongoDB();
 $clientneo = Utilities::connectNeo4j();
